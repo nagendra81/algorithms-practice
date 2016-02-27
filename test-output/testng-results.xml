@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results skipped="0" failed="0" total="7" passed="7">
+  <reporter-output>
+  </reporter-output>
+  <suite name="Default suite" duration-ms="46" started-at="2016-02-03T08:08:21Z" finished-at="2016-02-03T08:08:21Z">
+    <groups>
+    </groups>
+    <test name="Default test" duration-ms="46" started-at="2016-02-03T08:08:21Z" finished-at="2016-02-03T08:08:21Z">
+      <class name="test.LowerRangeTest">
+        <test-method status="PASS" signature="testLowerRange(int, int)[pri:0, instance:test.LowerRangeTest@50675690]" name="testLowerRange" duration-ms="16" started-at="2016-02-03T13:38:21Z" data-provider="positiveDataSet" finished-at="2016-02-03T13:38:21Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[1]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[2]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testLowerRange -->
+        <test-method status="PASS" signature="testLowerRange(int, int)[pri:0, instance:test.LowerRangeTest@50675690]" name="testLowerRange" duration-ms="0" started-at="2016-02-03T13:38:21Z" data-provider="positiveDataSet" finished-at="2016-02-03T13:38:21Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[20]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[20]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testLowerRange -->
+        <test-method status="PASS" signature="testLowerRange(int, int)[pri:0, instance:test.LowerRangeTest@50675690]" name="testLowerRange" duration-ms="0" started-at="2016-02-03T13:38:21Z" data-provider="positiveDataSet" finished-at="2016-02-03T13:38:21Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[5]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[6]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testLowerRange -->
+        <test-method status="PASS" signature="testNegativeLowerRange(int, int)[pri:0, instance:test.LowerRangeTest@50675690]" name="testNegativeLowerRange" duration-ms="15" started-at="2016-02-03T13:38:21Z" data-provider="negativeDataSet" finished-at="2016-02-03T13:38:21Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[20]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[12]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testNegativeLowerRange -->
+        <test-method status="PASS" signature="testNegativeLowerRange(int, int)[pri:0, instance:test.LowerRangeTest@50675690]" name="testNegativeLowerRange" duration-ms="0" started-at="2016-02-03T13:38:21Z" data-provider="negativeDataSet" finished-at="2016-02-03T13:38:21Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[1]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[5]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testNegativeLowerRange -->
+        <test-method status="PASS" signature="testLowerRange(int, int)[pri:0, instance:test.LowerRangeTest@50675690]" name="testLowerRange" duration-ms="0" started-at="2016-02-03T13:38:21Z" data-provider="positiveDataSet" finished-at="2016-02-03T13:38:21Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[2]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[2]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testLowerRange -->
+        <test-method status="PASS" signature="testNegativeLowerRange(int, int)[pri:0, instance:test.LowerRangeTest@50675690]" name="testNegativeLowerRange" duration-ms="0" started-at="2016-02-03T13:38:21Z" data-provider="negativeDataSet" finished-at="2016-02-03T13:38:21Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[5]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[13]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testNegativeLowerRange -->
+      </class> <!-- test.LowerRangeTest -->
+    </test> <!-- Default test -->
+  </suite> <!-- Default suite -->
+</testng-results>
