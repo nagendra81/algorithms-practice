@@ -8,10 +8,11 @@ public class PowerSets {
 	}
 
 	public static void generate(String prefix, String word) {
-			for (int i = 0; i < word.length(); i++) {
-				String newPrefix = prefix + word.charAt(i);
-				generate(newPrefix, word.substring(i + 1));
-				System.out.printf("{%s}\n", newPrefix);
-			}
+		if("".equals(word)) {
+			System.out.println("{" + prefix + "}");
+		} else {
+			generate(prefix + word.charAt(0), word.substring(1));
+			generate(prefix, word.substring(1));
+		}
 	}
 }

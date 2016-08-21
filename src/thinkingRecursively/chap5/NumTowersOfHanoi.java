@@ -4,7 +4,7 @@ public class NumTowersOfHanoi {
 	static String moves = "Move tower #%d from %s -> %s\n";
 
 	public static void main(String[] args) {
-		int cnt = moveTowers(3, "A", "B", "C");
+		int cnt = moveTowers(4, "A", "B", "C");
 		System.out.println(cnt);
 	}
 
