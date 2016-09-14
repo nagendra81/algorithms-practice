@@ -24,16 +24,26 @@ public class Billboards {
 		long[] opt = new long[boards.length];
 		Arrays.fill(opt, -1);
 
-		long t = boards[0];
+		long[] pre_sums = new long[N];
+
+		pre_sums[0] = boards[0];
+
+		for (int i = 1; i < N; i++) {
+			pre_sums[i] = pre_sums[i - 1] + boards[i];
+		}
+
+		System.out.println(Arrays.toString(pre_sums));
+
+		opt[0] = boards[0];
 		for (int i = 1; i < K; i++) {
-			opt[i] = t + boards[i];
-			t = opt[i];
+			opt[i] = opt[i - 1] + boards[i];
 		}
 
 		for (int n = K; n < N; n++) {
 			long profit = 0;
 			long max_profit = -1;
 			long max_here = 0;
+
 			for (int k = 0; k < K; k++) {
 				if (n - k < 0) {
 					break;
@@ -47,7 +57,7 @@ public class Billboards {
 
 			opt[n] = max_profit;
 		}
-		// System.out.println(Arrays.toString(opt));
+		System.out.println("opt: " + Arrays.toString(opt));
 		System.out.println(opt[N - 1]);
 	}
 

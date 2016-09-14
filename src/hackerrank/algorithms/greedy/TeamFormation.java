@@ -47,6 +47,7 @@ public class TeamFormation {
 		Arrays.sort(skills);
 		System.out.println(Arrays.toString(skills));
 		PriorityQueue<TeamEntry> pq = new PriorityQueue<>();
+
 		List<TeamEntry> tmp = new ArrayList<>();
 
 		int currMinSize = Integer.MAX_VALUE;

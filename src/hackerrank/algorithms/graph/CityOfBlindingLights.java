@@ -2,14 +2,12 @@ package hackerrank.algorithms.graph;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.PriorityQueue;
 import java.util.Scanner;
-import java.util.Set;
 
 public class CityOfBlindingLights {
+	static final int INFINITY = 99999;
+
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 
@@ -20,7 +18,7 @@ public class CityOfBlindingLights {
 		for (int i = 0; i < M; i++) {
 			graph.addEdge(sc.nextInt(), sc.nextInt(), sc.nextInt());
 		}
-		System.out.println(graph);
+		// System.out.println(graph);
 
 		List<int[]> queries = new ArrayList<>();
 
@@ -30,107 +28,52 @@ public class CityOfBlindingLights {
 			queries.add(new int[] { sc.nextInt(), sc.nextInt() });
 		}
 
-		int[][] paths = new int[N][N];
+		int[][] dist = new int[N + 1][N + 1];
 
-		for (int[] pa : paths) {
-			Arrays.fill(pa, Integer.MAX_VALUE);
+		for (int[] pa : dist) {
+			Arrays.fill(pa, INFINITY);
 		}
 
-		for (int i = 0; i < paths.length; i++) {
-			for (int j = 0; j < paths.length; j++) {
-				if (i == j) {
-					paths[i][j] = 0;
+		for (int i = 1; i <= N; i++) {
+			dist[i][i] = 0;
+
+		}
+
+		for (Edge ed : graph.getEdges()) {
+			dist[ed.u][ed.v] = ed.wt;
+		}
+
+		for (int k = 1; k <= N; k++) {
+			for (int i = 1; i <= N; i++) {
+				for (int j = 1; j <= N; j++) {
+					if (dist[i][j] > dist[i][k] + dist[k][j]) {
+						dist[i][j] = dist[i][k] + dist[k][j];
+					}
 				}
 			}
 		}
 
-		for (int node : graph.getNodes()) {
-			compute(node, graph, paths[node - 1]);
-		}
-
 		for (int[] q : queries) {
-			System.out.println(paths[q[0] - 1][q[1] - 1]);
-		}
-
-		for (int[] pa : paths) {
-			System.out.println(Arrays.toString(pa));
-		}
-
-	}
-
-	private static void compute(int S, DirGraph graph, int[] dist) {
-
-		boolean[] visited = new boolean[graph.getNodes().size() + 1];
-
-		PriorityQueue<Node> pq = new PriorityQueue<>();
-		pq.add(new Node(S, dist[S - 1]));
-
-		while (!pq.isEmpty()) {
-			System.out.println("pq:" + pq);
-			if (visited[S]) {
-				return;
+			int r = dist[q[0]][q[1]];
+			if (r == INFINITY) {
+				r = -1;
 			}
-
-			for (Edge e : graph.adj.get(S)) {
-				pq.remove(new Node(e.v, dist[e.v - 1]));
-				dist[e.v - 1] = Math.min(dist[e.v - 1], dist[S - 1] == Integer.MAX_VALUE ? e.wt : dist[S - 1] + e.wt);
-
-				pq.add(new Node(e.v, dist[e.v - 1]));
-			}
-			visited[S] = true;
+			System.out.println(r);
 		}
+
 	}
 
 	static class DirGraph {
-		Map<Integer, List<Edge>> adj = new HashMap<>();
+		List<Edge> edgeList = new ArrayList<>();
 
 		public void addEdge(int u, int v, int wt) {
-			List<Edge> eu = adj.get(u);
-			if (eu == null) {
-				eu = new ArrayList<>();
-			}
-			eu.add(new Edge(u, v, wt));
-			adj.put(u, eu);
+			edgeList.add(new Edge(u, v, wt));
 		}
 
-		public Set<Integer> getNodes() {
-			return adj.keySet();
+		public List<Edge> getEdges() {
+			return edgeList;
 		}
 
-		@Override
-		public String toString() {
-			return adj.toString();
-		}
-
-	}
-
-	static class Node implements Comparable<Node> {
-		int u;
-		int dis;
-
-		Node(int u, int dis) {
-			this.u = u;
-			this.dis = dis;
-		}
-
-		@Override
-		public int compareTo(Node that) {
-			if (this.u == that.u && this.dis == that.dis) {
-				return 0;
-			}
-			return Integer.compare(this.dis, that.dis);
-		}
-
-		@Override
-		public boolean equals(Object obj) {
-			Node that = (Node) obj;
-			return this.u == that.u;
-		}
-
-		@Override
-		public String toString() {
-			return String.format("u=%d, dis=%d", u, dis);
-		}
 	}
 
 	static class Edge implements Comparable<Edge> {

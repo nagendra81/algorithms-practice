@@ -1,43 +1,60 @@
 package hackerrank.algorithms.sorting;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Scanner;
 
 public class FullCountingSort {
 	public static void main(String[] args) throws NumberFormatException, IOException {
-		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		Scanner sc = new Scanner(System.in);
 
-		int N = Integer.parseInt(br.readLine().trim());
+		int N = sc.nextInt();
 
 		int[] keys = new int[N];
-		String[] vals = new String[N];
+		Map<Integer, List<String>> vals = new HashMap<>();
 
+		int cnt = 0;
 		for (int i = 0; i < N; i++) {
-			String[] line = br.readLine().split(" ");
-			keys[i] = Integer.parseInt(line[0]);
-			vals[i] = line[1].trim();
+			keys[i] = sc.nextInt();
+			List<String> li = vals.get(keys[i]);
+			if (li == null)
+				li = new ArrayList<>();
+			String s = sc.next();
+			if (i < (N / 2))
+				s = "-";
+			li.add(s);
+			vals.put(keys[i], li);
+			cnt++;
 		}
 
-		int[] count = new int[1000000];
+		int[] count = new int[cnt];
 		Arrays.fill(count, 0);
 
 		for (int i = 0; i < N; i++) {
 			count[keys[i]]++;
 		}
 
+		// System.out.println(Arrays.toString(count));
+
 		StringBuilder sb = new StringBuilder();
 
-		long res = 0;
-
 		for (int i = 0; i < 100; i++) {
-			res += count[i];
-			sb.append(res);
-			sb.append(" ");
+			List<String> li = vals.get(i);
+			if (li != null) {
+				for (String s : li) {
+					sb.append(s);
+					sb.append(" ");
+				}
+
+			}
 		}
 
 		System.out.println(sb);
 
 	}
+
 }
