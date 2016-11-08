@@ -1,10 +1,12 @@
 package algorithms.strings;
 
 import java.util.Arrays;
+import java.util.PriorityQueue;
 
 public class SuffixArray {
 
 	String word;
+	PriorityQueue pq;
 	int R;
 	int C;
 	int[][] P;

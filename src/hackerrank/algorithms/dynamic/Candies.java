@@ -1,13 +1,17 @@
 package hackerrank.algorithms.dynamic;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
 import java.util.Arrays;
-import java.util.Scanner;
+import java.util.StringTokenizer;
 
 public class Candies {
 
 	public static void main(String[] args) throws IOException {
-		Scanner sc = new Scanner(System.in);
+		InputReader sc = new InputReader();
+		PrintWriter out = new PrintWriter(System.out);
 
 		int N = sc.nextInt();
 
@@ -27,14 +31,48 @@ public class Candies {
 
 		for (int i = N - 1; i > 0; i--) {
 			if (kids[i - 1] > kids[i]) {
-				opt[i - 1] = Math.max(opt[i - 1], opt[i] + 1);
+				opt[i - 1] = opt[i - 1] > opt[i] + 1 ? opt[i - 1] : opt[i] + 1;
 			}
 		}
 
-		long s = 0L;
-		for (long op : opt) {
+		int s = 0;
+		for (int op : opt) {
 			s += op;
 		}
-		System.out.println(s);
+		out.println(s);
+		out.close();
+	}
+
+	static class InputReader {
+		public BufferedReader reader;
+		public StringTokenizer tokenizer;
+
+		public InputReader() {
+			reader = new BufferedReader(new InputStreamReader(System.in));
+			tokenizer = null;
+		}
+
+		public String next() {
+			while (tokenizer == null || !tokenizer.hasMoreTokens()) {
+				try {
+					tokenizer = new StringTokenizer(reader.readLine());
+				} catch (IOException e) {
+					throw new RuntimeException(e);
+				}
+			}
+			return tokenizer.nextToken();
+		}
+
+		public int nextInt() {
+			return Integer.parseInt(next());
+		}
+
+		public long nextLong() {
+			return Long.parseLong(next());
+		}
+
+		public double nextDouble() {
+			return Double.parseDouble(next());
+		}
 	}
 }

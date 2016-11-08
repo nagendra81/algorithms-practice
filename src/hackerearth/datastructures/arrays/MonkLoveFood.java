@@ -1,4 +1,4 @@
-package hackerearth.arrays;
+package hackerearth.datastructures.arrays;
 
 import java.io.BufferedReader;
 import java.io.IOException;

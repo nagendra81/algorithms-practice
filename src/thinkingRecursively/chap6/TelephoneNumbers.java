@@ -32,7 +32,7 @@ public class TelephoneNumbers {
 	public static void main(String[] args) {
 		// 0 1 2 3 4 5 6 7 8 9
 		String[] letters = { "", "", "abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz" };
-		String in = "3948";
+		String in = "228";
 
 		generate(letters, "", in);
 

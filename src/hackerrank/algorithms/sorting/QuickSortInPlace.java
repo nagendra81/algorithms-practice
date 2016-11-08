@@ -17,6 +17,7 @@ public class QuickSortInPlace {
 		}
 
 		doQuickSort(a, 0, N - 1);
+		print(a);
 	}
 
 	private static void doQuickSort(int[] a, int lo, int hi) {
