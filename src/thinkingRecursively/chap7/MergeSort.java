@@ -5,46 +5,42 @@ import java.util.Arrays;
 public class MergeSort {
 	public static void main(String[] args) {
 
-		int[] vals = { 90, 99, 63, 82, 93, 76, 81, 76 };
-		// int[] vals = { 2, 3, 7, 7, 3, 5, 5, 3 };
-		doMergeSort(vals, 0, vals.length - 1);
+		// int[] vals = { 90, 99, 63, 82, 93, 76, 81, 76 };
+		int[] vals = { 2, 3, 7, 7, 3, 5, 5 };
+		sort(vals);
 		System.out.println(Arrays.toString(vals));
 	}
 
-	private static void doMergeSort(int[] vals, int lo, int hi) {
-		if (lo >= hi) {
-			return;
-		} else {
-			int mid = (lo + hi) / 2;
-			doMergeSort(vals, lo, mid);
-			doMergeSort(vals, mid + 1, hi);
-
-			merge(vals, lo, mid, hi);
+	private static void sort(int[] arr) {
+		if (arr.length > 1) {
+			int mid = arr.length / 2;
+			int[] a1 = subarray(arr, 0, mid);
+			int[] a2 = subarray(arr, mid, arr.length);
+			sort(a1);
+			sort(a2);
+			merge(arr, a1, a2);
 		}
+
 	}
 
-	static void merge(int[] vals, int lo, int mid, int hi) {
-		int[] tmp = new int[hi - lo + 1];
-
-		int ti = 0;
-		int l = lo;
-		int m = mid + 1;
-		while (l <= mid || m <= hi) {
-			if (l > mid) {
-				tmp[ti++] = vals[m++];
-			} else if (m > hi) {
-				tmp[ti++] = vals[l++];
+	private static void merge(int[] arr, int[] a1, int[] a2) {
+		int i1 = 0, i2 = 0;
+		int n1 = a1.length, n2 = a2.length;
+		for (int i = 0; i < arr.length; i++) {
+			if (i2 == n2 || (i1 < n1 && a1[i1] < a2[i2])) {
+				arr[i] = a1[i1++];
 			} else {
-				if (vals[l] < vals[m]) {
-					tmp[ti++] = vals[l++];
-				} else {
-					tmp[ti++] = vals[m++];
-				}
+				arr[i] = a2[i2++];
 			}
 		}
-
-		for (int i = 0, j = lo; i < tmp.length; i++, j++) {
-			vals[j] = tmp[i];
-		}
 	}
+
+	private static int[] subarray(int[] arr, int s, int e) {
+		int[] sub = new int[e - s];
+		for (int i = s; i < e; i++) {
+			sub[i - s] = arr[i];
+		}
+		return sub;
+	}
+
 }

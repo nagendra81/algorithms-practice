@@ -1,13 +1,12 @@
 package thinkingRecursively.chap6;
 
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
-import java.io.IOException;
 import java.util.HashSet;
 
 public class TelephoneNumbers {
 	private static final HashSet<String> dictWords = new HashSet<>();
+	private static final String[] LETTERS = { "", "", "abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz" };
 	static {
 		try {
 
@@ -19,22 +18,28 @@ public class TelephoneNumbers {
 			}
 
 			System.out.println(dictWords.size());
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 
 	}
 
 	public static void main(String[] args) {
-		// 0 1 2 3 4 5 6 7 8 9
-		String[] letters = { "", "", "abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz" };
-		String in = "228";
+		generate("", "43556");
+	}
 
-		generate(letters, "", in);
+	static void generate(String prefix, String phoneNum) {
+		if (phoneNum.length() == 0) {
+			if (dictWords.contains(prefix)) {
+				System.out.println(prefix);
+			}
+		} else {
+			int num = phoneNum.charAt(0) - '0';
+			String letters = LETTERS[num];
+			for (char let : letters.toCharArray()) {
+				generate(prefix + let, phoneNum.substring(1));
+			}
+		}
 
 	}
 

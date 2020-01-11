@@ -9,14 +9,10 @@ public class NumTowersOfHanoi {
 	}
 
 	private static int moveTowers(int n, String start, String end, String tmp) {
-		int res = 0;
-		if (n > 0) {
-			res += moveTowers(n - 1, start, tmp, end);
-			System.out.printf(moves, n, start, end);
-			res++;
-			res += moveTowers(n - 1, tmp, end, start);
+		if (n == 1) {
+			return 1;
 		}
-		return res;
+		return moveTowers(n - 1, start, tmp, end) + 1 + moveTowers(n - 1, tmp, end, start);
 	}
 
 }

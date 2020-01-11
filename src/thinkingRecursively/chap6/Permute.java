@@ -26,7 +26,5 @@ public class Permute {
 				permute(prefix + c, rest);
 			}
 		}
-
 	}
-
 }

@@ -10,6 +10,8 @@ public class Count15 {
 
 	}
 
+	static int count15()
+
 	static int countSum(int[] vals, int vi, int sum, int target) {
 		if (vi == vals.length && sum == target) {
 			return 1;

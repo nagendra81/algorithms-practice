@@ -1,21 +1,23 @@
 package thinkingRecursively.chap6;
 
-import java.util.Scanner;
-
 public class PermuteNoDups {
 	public static void main(String[] args) {
-		Scanner sc = new Scanner(System.in);
-		while (true) {
-			String word = sc.next();
-			if (word.trim().length() == 0)
-				break;
-			System.out.println(word.trim().length());
-			permute(word);
-		}
+		permute("ABB");
 	}
 
 	static void permute(String word) {
+		// word = removeDups(word);
 		permute("", word);
+	}
+
+	private static String removeDups(String word) {
+		StringBuilder sb = new StringBuilder();
+		for (char c : word.toCharArray()) {
+			if (sb.toString().indexOf(c) == -1) {
+				sb.append(c);
+			}
+		}
+		return sb.toString();
 	}
 
 	private static void permute(String prefix, String word) {
@@ -24,26 +26,14 @@ public class PermuteNoDups {
 		} else {
 			for (int i = 0; i < word.length(); i++) {
 				char c = word.charAt(i);
-
 				String rest = word.substring(0, i) + word.substring(i + 1);
-				permute(prefix + c, rest);
+				String prefix2 = prefix;
+				if (prefix.indexOf(c) == -1) {
+					prefix2 = prefix + c;
+				}
+				permute(prefix2, rest);
 			}
 		}
-	}
-
-	private static String removeChar(String word, char c, int i) {
-		StringBuilder sb = new StringBuilder();
-
-		for (int j = 0; j < i; j++) {
-			sb.append(word.charAt(j));
-		}
-
-		for (int j = i; j < word.length(); j++) {
-			if (word.charAt(j) != c) {
-				sb.append(word.charAt(j));
-			}
-		}
-		return sb.toString();
 	}
 
 }

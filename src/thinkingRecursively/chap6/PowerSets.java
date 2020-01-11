@@ -8,11 +8,11 @@ public class PowerSets {
 	}
 
 	public static void generate(String prefix, String word) {
-		if("".equals(word)) {
-			System.out.println("{" + prefix + "}");
-		} else {
-			generate(prefix + word.charAt(0), word.substring(1));
-			generate(prefix, word.substring(1));
+		if (word.length() == 0) {
+			System.out.println(prefix);
+			return;
 		}
+		generate(prefix, word.substring(1));
+		generate(prefix + word.charAt(0), word.substring(1));
 	}
 }
